@@ -52,6 +52,10 @@
 H2O.ai\\
 Washington, DC\\
 \texttt{phall@h2o.ai} \And
+Navdeep Gill\\
+H2O.ai\\
+Mountain View, CA\\
+\texttt{navdeep@h2o.ai} \And
 Nicholas Schimdt\\
 BLDS, LLC\\
 Philadelphia, PA\\
@@ -117,7 +121,7 @@ Four guidelines are proposed and discussed in Sections \ref{sec:trust} -- \ref{s
 \item Use explanations to enable understanding.
 \item Learn how explainable ML is used for nefarious purposes.
 \item Augment surrogate models with direct explanations.
-\item Use fully transparent ML mechanisms for life- or mission-critical applications.
+\item Use highly interpretable mechanisms for life- or mission-critical ML.
 
 \end{enumerate}
 
@@ -149,8 +153,7 @@ Explanations are often discussed in the context of trust (e.g., \citet{lime}), b
 \item \textbf{Trust without explanation and understanding}: Years before reliable explanation techniques were widely acknowledged and available, black-box predictive models, such as autoencoder and MLP neural networks, were used for fraud detection in the financial services industry \cite{gopinathan1998fraud}. When these models performed well, they were trusted.\footnote{\scriptsize{``Reduce Losses from Fraudulent Transactions'': \url{https://www.sas.com/en_ph/customers/hsbc.html}.}}\textsuperscript{,}\footnote{\scriptsize{``SAS Secures Technology Patent for Better Fraud Detection Performance'': \url{https://www.kdnuggets.com/2011/03/sas-patent-fraud-detection.html}.}} However, they were not explainable or well-understood by contemporary standards.  
 
 \end{itemize}
-
-Typically, explanations only increase trust in models as a side-effect, when they are acceptable to human users by various criteria. As illustrated in Figure \ref{fig:hc_ml}, in an ideal scenario, explanation techniques should be used to directly increase understanding in ML models, while debugging and DI testing methods should be used to directly promote trust.
+Explanations typically increase trust in models as a side-effect, when they are acceptable to human users by various criteria. As illustrated in Figure \ref{fig:hc_ml}, in an ideal scenario, explanation techniques should be used to directly increase understanding in ML models, while debugging and DI testing methods should be used to directly promote trust.
 
 \subsection{Guideline: Learn How Explainable ML is Used for Nefarious Purposes}
 
@@ -164,7 +167,7 @@ When used disingenuously, explainable ML methods can provide cover for misused o
 
 \subsection{Guideline: Augment Surrogate Models with Direct Explanations}
 
-Models of models, or surrogate models, can be helpful explanatory tools, but they are usually approximate, low-fidelity explainers. Aside from 1.) a global or local summary of a complex model provided by a surrogate model can be helpful sometimes and 2.) much work in explainable ML has been directed toward improving the fidelity and usefulness of surrogate models \cite{dt_surrogate2}, \cite{viper}, \cite{dt_surrogate1}, \cite{lime-sup}, \cite{wf_xnn}, \textit{many explainable ML techniques have nothing to do with surrogate models!} One of the most exciting breakthroughs for supervised learning problems in explainable ML is the application of a coalitional game theory concept, Shapley values, to compute feature attributions which are consistent globally and accurate locally using the trained model itself \cite{shapley}, \cite{kononenko2010efficient}. An extension of this idea, called tree SHAP, has already been implemented for popular tree ensemble methods \cite{tree_shap}. 
+Models of models, or surrogate models, can be helpful explanatory tools, but they are usually approximate, low-fidelity explainers. Aside from (1) a global or local summary of a complex model provided by a surrogate model can be helpful sometimes and (2) much work in explainable ML has been directed toward improving the fidelity and usefulness of surrogate models \cite{dt_surrogate2}, \cite{viper}, \cite{dt_surrogate1}, \cite{lime-sup}, \cite{wf_xnn}, \textit{many explainable ML techniques have nothing to do with surrogate models!} One of the most exciting breakthroughs for supervised learning problems in explainable ML is the application of a coalitional game theory concept, Shapley values, to compute feature attributions which are consistent globally and accurate locally using the trained model itself \cite{shapley}, \cite{kononenko2010efficient}. An extension of this idea, called tree SHAP, has already been implemented for popular tree ensemble methods \cite{tree_shap}. 
 
 \begin{figure}[htb!]
 	\begin{subfigure}{.55\textwidth}
@@ -211,9 +214,9 @@ f(\mathbf{X}) = \twopartdef {1} {X_{\text{num}1} * X_{\text{num}4} + |X_{\text{n
   \end{tabular}
 \end{table}
 
-\subsection{Guideline: Use Fully Transparent ML Mechanisms for Mission- or Life-Critical Applications} \label{sec:white_box}
+\subsection{Guideline: Use Highly Interpretable Mechanisms for Mission- or Life-Critical ML} \label{sec:white_box}
 
-Given the known difficulties with explaining black-boxes \cite{please_stop}, the existence of unwanted social bias in machine learning \cite{fairmlbook}, the security vulnerabilities of machine learning \cite{membership_inference},  \cite{model_stealing}, and the potentially surprising behavior of black-boxes \cite{easily_fooled}, \cite{intriguing_properties}, it appears prudent today to use fully transparent ML mechanisms for  applications that make life-altering or high-value decisions. Interpretability, as enabled by interpretable models and post-hoc explanations (see corollary \ref{cor:int_ex}), may be mandated by regulation for some life- or mission-critical applications, but interpretability is also recommended for any ML application in which inevitable wrong decisions should be appealable. This section discusses a few details and examples regarding regulated ML applications and appeal, and also advocates for trust-enhancing DI testing (see corollaries \ref{cor:ex_di} -- \ref{cor:di_con}) in high-stakes, human-centered applications.  
+Given the known difficulties with explaining black-boxes \cite{please_stop}, the existence of unwanted social bias in data and machine learning models \cite{fairmlbook}, the security vulnerabilities of machine learning \cite{membership_inference},  \cite{model_stealing}, and the potentially surprising behavior of black-boxes \cite{easily_fooled}, \cite{intriguing_properties}, it appears prudent today to use highly transparent ML mechanisms for  applications that make life-altering or high-value decisions. Interpretability, as enabled by interpretable models and post-hoc explanations (see corollary \ref{cor:int_ex}), may be mandated by regulation for some life- or mission-critical applications, but interpretability is also recommended for any ML application in which inevitable wrong decisions should be appealable. This section discusses a few details and examples regarding regulated ML applications and appeal, and also advocates for trust-enhancing DI testing (see corollaries \ref{cor:ex_di} -- \ref{cor:di_con}) in high-stakes or human-centered applications.  
 
 Interpretable ML mechanisms are required under numerous regulatory statutes in the U.S., and explainable ML tools like LIME and other surrogate models, partial dependence plots, and global and local feature importance are already used to document, understand, and validate some predictive models in the financial services industry \cite{lime-sup}, \cite{wf_xnn}.\textsuperscript{\ref{fn:regs}, \ref{fn:chen}} Moreover, adverse action notices are mandated under the Equal Credit Opportunity Act (ECOA) and the Fair Credit Reporting Act (FCRA) for many credit lending, employment, and insurance decisions in the U.S.\footnote{\scriptsize{``Adverse Action Notice Requirements Under the ECOA and the FCRA'': \url{https://consumercomplianceoutlook.org/2013/second-quarter/adverse-action-notice-requirements-under-ecoa-fcra/}.}} If ML is used for such decisions it must be explained in terms of adverse action notices.\footnote{\scriptsize{``New Patent-Pending Technology from Equifax Enables Configurable AI Models'': \url{https://www.prnewswire.com/news-releases/new-patent-pending-technology-from-equifax-enables-configurable-ai-models-300701153.html}.}} Shapley values, and other local feature importance approaches, provide a convenient methodology to rank the direct contribution of input features to final model decisions and potentially generate customer-specific adverse action notices. 
 
@@ -248,31 +251,31 @@ Like interpretable models, fairness methods are often presented in different art
   	\caption{Basic group disparity metrics for females under monotonically constrained GBM model, $g_{\text{mono}}$, trained on the UCI credit card dataset.\\}
   	\label{tab:dia}
   	\centering
-  	\begin{tabular}{llll}
+  	\begin{tabular}{lll}
     	\toprule
-    	& Adverse Impact Disparity & Accuracy Disparity & False Omissions Disparity \\
+    	& Adverse Impact Disparity & False Omissions Disparity \\
     	\midrule
-	Female & 0.8869 & 1.035 & \textcolor{red}{0.7866} \\
+	Female & 0.8869 & \textcolor{red}{0.7866} \\
     	\bottomrule
   \end{tabular}
 \end{table}
 
-Table \ref{tab:dia} displays basic group disparity metrics for a monotonically constrained GBM model, $g_{\text{mono}}$, trained on the UCI credit card data.\footnote{\scriptsize{Code to replicate Table \ref{tab:dia}:  \url{https://nbviewer.jupyter.org/github/h2oai/xai_guidelines/blob/master/dia.ipynb}.}} In this example scenario, $g_{\text{mono}}$ displays group parity according to the four-fifths rule with \texttt{male} as the reference level, but also presents unwanted false omissions rate bias against females, indicating that males may be receiving too much credit they cannot repay, potentially preventing females from receiving that credit. 
+Table \ref{tab:dia} displays basic group disparity metrics for a monotonic GBM model, $g_{\text{mono}}$, trained on the UCI credit card data.\footnote{\scriptsize{Code to replicate Table \ref{tab:dia}:  \url{https://nbviewer.jupyter.org/github/h2oai/xai_guidelines/blob/master/dia.ipynb}.} \label{fn:dia}} In this example, $g_{\text{mono}}$ displays group parity for adverse impact with \texttt{male} as the reference level according to the four-fifths rule, but also presents unwanted false omissions rate bias against females, indicating that males may be receiving too much credit they cannot repay, potentially preventing females from receiving that credit. This disparity can be remedied by gently increasing the decision cutoff for $g_{\text{mono}}$, and Shapley values can also explain each $g_{\text{mono}}$ prediction.\textsuperscript{\ref{fn:dia}}
 
-\subsubsection{Corollary: Explanation is Not a Frontline Fairness Tool} In high-stakes and commercially viable uses of explainable ML in credit lending, insurance, and employment in the U.S. that fall under FCRA, ECOA, or other applicable regulations, demographic attributes cannot be used in predictive models and thus their contribution to models cannot be assessed using accurate, direct explainable ML techniques. Even when demographic attributes can be used in models, it has been shown that explanations may not detect bias \cite{fair_washing}. Given these drawbacks, it is recommended that fairness techniques are used to test for and remediate  bias, and explanations are used to understand bias when appropriate.  
+\subsubsection{Corollary: Explanation is Not a Frontline Fairness Tool} In high-stakes and commercially viable uses of explainable ML in credit lending, insurance, and employment in the U.S. that fall under FCRA, ECOA, or other applicable regulations, demographic attributes cannot be used in predictive models and thus their contribution to models cannot be assessed using accurate, direct explainable ML techniques. Even when demographic attributes can be used in models, it has been shown that explanations may not detect bias \cite{fair_washing}. Given these drawbacks, it is recommended that fairness techniques are used to test for and remediate bias, and explanations are used to understand unwanted sociological bias when appropriate.  
 
-\subsubsection{Corollary: Use Bias Testing Along with Constrained Models}  \label{cor:di_con}
+\subsubsection{Corollary: Use Bias Testing Along with Constrained Models} \label{cor:di_con}
 
-Unconstrained ML models can treat similar individuals differently due to small differences in their data values, and unconstrained models can cause local bias that is not detectable with standard bias testing methods that analyze group fairness \cite{dwork2012fairness}. To mitigate local bias when using ML, and to ensure standard bias or DI testing methods are most effective, pair DI testing with constrained models.
+Unconstrained ML models can treat similar individuals differently due to small differences in input data values, causing local bias that is not detectable with standard DI testing methods that measure group fairness \cite{dwork2012fairness}. To mitigate local bias when using ML, and to ensure standard bias or DI testing methods are most effective, pair such testing with constrained models.
 
 \section{Conclusion: a Holistic Approach for Life- or Mission-Critical ML} \label{sec:conclusion}
 
-ML systems are used today to make life-altering decisions about employment, bail, parole, and lending.\footnote{\scriptsize{``Debugging Machine Learning Models'': \url{https://debug-ml-iclr2019.github.io/}.}} The scope of decisions delegated to ML systems seems likely only to expand in the future. Many researchers and practitioners are tackling DI, inaccuracy, privacy violations, and security vulnerabilities with a number of brilliant, but perhaps siloed, approaches. By presenting some straightforward explainable ML guidelines, this short text also gives examples of combining innovations from several sub-disciplines of ML research to train fair, accountable, and transparent predictive modeling systems. As proposed in Figure \ref{fig:hc_ml}, using these techniques together can create a new and more human-centered type of ML potentially better-suited for use in business- and life-critical decision support than conventional methods.
+ML systems are used today to make life-altering decisions about employment, bail, parole, and lending,\footnote{\scriptsize{``Debugging Machine Learning Models'': \url{https://debug-ml-iclr2019.github.io/}.}} and the scope of decisions delegated to ML systems seems likely to expand in the future. Many researchers and practitioners are tackling DI, inaccuracy, privacy violations, and security vulnerabilities with a number of brilliant, but sometimes siloed, approaches. By proposing some straightforward explainable ML guidelines, this short text also gives examples of combining innovations from several sub-disciplines of ML research to train understandable and trustworthy predictive modeling systems. As illustrated in Figure \ref{fig:hc_ml}, these innovations can be used together, and this combination may be better-suited for use in business- and life-critical applications than conventional ML methods.
 
 \begin{figure}[htb!]
 	\begin{center}
 		\includegraphics[scale=0.1]{img/hc_ml.png}
-		\caption{A diagram of a proposed holistic ML workflow in which explanations (highlighted in green) are used along with interpretable models, DI analysis and remediation techniques, and other review and appeal mechanisms to create a fair, accountable, and transparent ML system.}
+		\caption{A diagram of a proposed holistic ML workflow in which explanations (highlighted in green) are used along with interpretable models, DI analysis and remediation techniques, and other review and appeal mechanisms to create an understandable and trustworthy ML system.}
 		\label{fig:hc_ml}
 	\end{center}
 \end{figure}
@@ -280,7 +283,7 @@ ML systems are used today to make life-altering decisions about employment, bail
 \clearpage
 \section*{Acknowledgements}
 
-The authors thank Przemyslaw Biecek, Pramit Choudhary, Benjamin Cox, Navdeep Gill, Christoph Molnar, and Bryce Stephens for their helpful input and insights. 
+The authors thank Przemyslaw Biecek, Pramit Choudhary, Benjamin Cox, Lingyao Meng, Christoph Molnar, and Bryce Stephens for their helpful input and insights. 
 
 %-------------------------------------------------------------------------------
 \section*{References}
